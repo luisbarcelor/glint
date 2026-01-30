@@ -1,0 +1,74 @@
+﻿# ====================================================================
+# Environment & Secrets (Security First)
+# ====================================================================
+.env
+.env.*
+!.env.example
+secrets.json
+*.pem
+*.key
+*.pfx
+*.crt
+
+# ====================================================================
+# .NET (ASP.NET Core / C#)
+# ====================================================================
+bin/
+obj/
+out/
+publish/
+appsettings.Development.json
+appsettings.Local.json
+*.user
+*.userosscache
+*.sln.docstates
+[Vv]isual[Ss]tudio.managed.json
+
+# ====================================================================
+# Node.js & React (Vite, etc.)
+# ====================================================================
+node_modules/
+dist/
+dist-ssr/
+build/
+.next/
+.eslintcache
+.stylelintcache
+*-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ====================================================================
+# IDEs & Editors
+# ====================================================================
+# JetBrains
+.idea/
+*.sln.iml
+
+# Visual Studio / VS Code
+.vs/
+.vs-*/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Legacy/Misc Editor files
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+
+# ====================================================================
+# Docker & OS
+# ====================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+.docker/
+
+# Logs
+logs/
+*.log

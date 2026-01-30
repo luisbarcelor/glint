@@ -1,0 +1,6 @@
+@Glint.HttpApi_HostAddress = http://localhost:5173
+
+GET {{Glint.HttpApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
