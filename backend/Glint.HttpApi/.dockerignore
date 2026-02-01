@@ -1,0 +1,45 @@
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+
+# Visual Studio / Rider
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# NuGet
+**/packages/
+*.nupkg
+
+# Test results
+**/TestResults/
+**/*.trx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docker
+**/Dockerfile*
+**/docker-compose*
+**/.dockerignore
+
+# Documentation
+README.md
+**/*.md
+
+# Logs
+**/logs/
+**/*.log
+
+# Temporary files
+**/tmp/
+**/temp/
