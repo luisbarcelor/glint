@@ -12,7 +12,26 @@ services:
     volumes:
       - ./backend/Glint.HttpApi/:/glint/src/
     depends_on:
-      - redis
+      glint-media-worker:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    networks:
+      - glint-network
+  
+  glint-media-worker:
+    build:
+      context: ./backend/Glint.MediaWorker/
+      target: development
+    image: glint-media-worker:dev
+    container_name: glint-media-worker-dev
+    environment:
+      - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
+    volumes:
+      - ./backend/Glint.MediaWorker/:/glint/src/
+    depends_on:
+      redis:
+        condition: service_healthy
     networks:
       - glint-network
 
@@ -24,6 +43,12 @@ services:
     volumes:
       - glint_redis_data:/data
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
     networks:
       - glint-network
 

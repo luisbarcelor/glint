@@ -12,8 +12,9 @@ RUN dotnet restore "Glint.HttpApi.csproj"
 COPY . .
 RUN dotnet publish "Glint.HttpApi.csproj" -c Release -o /glint/publish /p:UseAppHost=false
 
-FROM build AS development
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS development
 WORKDIR /glint/src
+# No COPY needed — source files come from volume mount.
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://+:5000
 ENV DOTNET_USE_POLLING_FILE_WATCHER=1
