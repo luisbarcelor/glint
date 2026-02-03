@@ -1,14 +1,16 @@
 services:
   glint-api:
     build:
-      context: ./backend
-      dockerfile: Glint.HttpApi/Dockerfile
+      context: ./backend/Glint.HttpApi/
       target: development
+    image: glint-api:dev
     container_name: glint-api-dev
     ports:
       - "5000:5000"
     environment:
       - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
+    volumes:
+      - ./backend/Glint.HttpApi/:/glint/src/
     depends_on:
       - redis
     networks:
