@@ -22,7 +22,6 @@ EXPOSE 5000
 ENTRYPOINT ["dotnet", "watch", "run", "--no-launch-profile"]
 
 FROM base AS final
-WORKDIR /glint/app
 COPY --from=build /glint/publish .
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV ASPNETCORE_URLS=http://+:8080

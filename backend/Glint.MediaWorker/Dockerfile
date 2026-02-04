@@ -22,7 +22,6 @@ ENV DOTNET_USE_POLLING_FILE_WATCHER=1
 ENTRYPOINT ["dotnet", "watch", "run", "--no-launch-profile"]
 
 FROM base AS final
-WORKDIR /glint/app
 COPY --from=build /glint/publish .
 ENV DOTNET_ENVIRONMENT=Production
 ENTRYPOINT ["dotnet", "Glint.MediaWorker.dll"]
