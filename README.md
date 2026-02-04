@@ -1,107 +1,131 @@
-# 🎬 Glint — High-Performance Video Assets for Those Who Build & Share
+# 🎬 Glint
 
-> Glint is a specialized engine designed for **creators** and **developers**. It seamlessly transforms screen captures into professional-grade GIFs and WebP assets, optimized for technical documentation, GitHub READMEs, and high-impact social media sharing.
+### **High-Performance Video Assets for Creators & Developers**
 
----
-
-## 📚 Documentation
-
-| Document                                             | Description                                      |
-|------------------------------------------------------|--------------------------------------------------|
-| **[Getting Started](#-getting-started)**             | Quick setup and installation guide               |
-| **[ARCHITECTURE.md](docs/ARCHITECTURE.md)**          | Detailed overview of the system flow             |
-| **[DEVELOPMENT.md](DEVELOPMENT.md)** *(coming soon)* | Development guidelines and contribution workflow |
-| **[API.md](API.md)** *(coming soon)*                 | API reference and endpoint documentation         |
-| **[DEPLOYMENT.md](DEPLOYMENT.md)** *(coming soon)*   | Production deployment strategies                 |
+> Glint is a specialized engine designed to transform screen captures into professional-grade **GIFs** and **WebP** assets. Perfectly optimized for technical documentation, GitHub READMEs, and high-impact social media sharing.
 
 ---
 
-## 🛠️ Tech Stack
-- **Backend:** .NET 10 (Web API + Background Services)
-- **Processing:** FFmpeg + FFMpegCore
-- **Database:** PostgreSQL + EF Core
-- **Job Orchestration:** Hangfire + **Redis** (High-performance queuing)
-- **Frontend:** React (Vite + Tailwind CSS + Mantine)
-- **Communication:** SignalR + **Redis Backplane** (Real-time updates)
+## 📖 Documentation
+
+Explore the following guides to learn more about Glint:
+
+| Document                                            | Description                                 |
+|:----------------------------------------------------|:--------------------------------------------|
+| 🚀 **[Getting Started](#-getting-started)**         | Quick setup and local installation guide.   |
+| 🏗️ **[System Architecture](docs/ARCHITECTURE.md)** | Deep dive into the system flow and design.  |
+| 🛠️ **[Development Guide](DEVELOPMENT.md)**         | Contribution workflow and coding standards. |
+| 🔌 **[API Reference](API.md)**                      | Detailed endpoint documentation.            |
+| 🚢 **[Deployment Guide](DEPLOYMENT.md)**            | Production-ready strategies and scaling.    |
+
+---
+
+## ✨ Key Features
+
+- **⚡ Lightning Fast:** High-performance background processing using FFmpeg.
+- **🔄 Real-time Updates:** Instant progress notifications via SignalR.
+- **🐳 Container First:** Fully dockerized environment for seamless setup.
+- **🛠️ Developer Friendly:** Built with .NET 10, Redis, and React.
+
+---
+
+## 🧰 Tech Stack
+
+- **Core:** .NET 10 (Web API + Background Services)
+- **Engine:** FFmpeg + [FFMpegCore](https://github.com/rosenbjerg/FFMpegCore)
+- **Data:** PostgreSQL + EF Core
+- **Queue:** Hangfire + **Redis** (Persistent job orchestration)
+- **Real-time:** SignalR + **Redis Backplane**
+- **UI:** React (Vite + Tailwind CSS + Mantine)
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
+
+Ensure you have the following installed:
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [Docker Engine](https://docs.docker.com/engine/install/)
-- A `.env` file in the root directory with the following content:
+- A `.env` file in the root directory with:
   ```env
   REDIS_PASSWORD=your_secure_password
   ```
 
-### Launching the Development Environment
+### ⚡ Launching the Environment
 
-To start all services in development mode, run:
+Start all services in development mode with a single command:
 
 ```bash
 docker compose up -d --build
 ```
 
-This will spin up:
-- **Frontend:** http://localhost:3000
-- **API:** http://localhost:5000
-- **Redis:** localhost:6379
-
-### Verifying Services
-
-#### 1. Check Redis
-Verify that Redis is running and authenticated:
-```bash
-docker exec glint-redis-dev redis-cli -a your_redis_password ping
-```
-*Expected output: `PONG`*
-
-#### 2. Check FFmpeg
-Verify that FFmpeg is available in the Media Worker container:
-```bash
-docker exec glint-media-worker-dev ffmpeg -version
-```
-*Expected output: `ffmpeg version 6.1.1...`*
+#### 🌐 Service Map
+- **Frontend:** [http://localhost:3000](http://localhost:3000)
+- **API:** [http://localhost:5000](http://localhost:5000)
+- **Redis:** `localhost:6379`
 
 ---
 
-## 🐛 Troubleshooting
+## 🔍 Verification & Health Checks
 
-### Services won't start
+Verify that your environment is running correctly:
+
+### 1. Redis Connectivity
 ```bash
-# Check container logs
+docker exec glint-redis-dev redis-cli -a your_redis_password ping
+```
+*Expected: `PONG`*
+
+### 2. FFmpeg Availability
+```bash
+docker exec glint-media-worker-dev ffmpeg -version
+```
+*Expected: `ffmpeg version 6.1.1...`*
+
+---
+
+## 🛠️ Troubleshooting
+
+<details>
+<summary><b>Services won't start</b></summary>
+
+```bash
+# View logs
 docker-compose logs -f
 
-# Restart all services
+# Hard restart
 docker-compose down && docker-compose up -d --build
 ```
+</details>
 
-### Redis connection issues
-- Verify `REDIS_PASSWORD` in `.env` matches `docker-compose.yml`
-- Ensure no other services are using port 6379
+<details>
+<summary><b>Redis connection issues</b></summary>
 
-### FFmpeg not found
+- Verify `REDIS_PASSWORD` in `.env` matches your expectations.
+- Ensure port `6379` is not occupied by another instance.
+</details>
+
+<details>
+<summary><b>FFmpeg not found</b></summary>
+
 ```bash
-# Rebuild the media worker container
+# Force rebuild the worker
 docker-compose up -d --build glint-media-worker-dev
 ```
+</details>
 
 ---
 
 ## 📝 License
 
-This project is licensed under the [Apache License 2.0](LICENSE).  
-You may use, modify, and distribute the code in accordance with the license terms.
+Distributed under the **Apache License 2.0**. See **[LICENSE](LICENSE)** for more information.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see **[DEVELOPMENT.md](DEVELOPMENT.md)** *(coming soon)* for guidelines.
-
-For major changes, open an issue first to discuss proposed modifications.
+We welcome contributions! Please check out our **[Development Guide](DEVELOPMENT.md)** to get started.
 
 ---
 
-**Built with ❤️ for the developer community**
+**Built with ❤️ by the developer community**
