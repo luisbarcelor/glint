@@ -2,5 +2,5 @@
 
 public interface IVideoUploadService
 {
-    Task<Guid> UploadAsync(IFormFile file);
+    Task<Guid> UploadAsync(IFormFile? file);
 }
