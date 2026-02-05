@@ -91,10 +91,10 @@ docker exec glint-media-worker-dev ffmpeg -version
 
 ```bash
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # Hard restart
-docker-compose down && docker-compose up -d --build
+docker compose down && docker compose up -d --build
 ```
 </details>
 
@@ -110,7 +110,7 @@ docker-compose down && docker-compose up -d --build
 
 ```bash
 # Force rebuild the worker
-docker-compose up -d --build glint-media-worker-dev
+docker compose up -d --build glint-media-worker-dev
 ```
 </details>
 

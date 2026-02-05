@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.HttpApi", "Glint.HttpApi\Glint.HttpApi.csproj", "{E93B2B51-AA74-4D78-B0BD-42FE01CBB147}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.HttpApi", "src\Glint.HttpApi\Glint.HttpApi.csproj", "{E93B2B51-AA74-4D78-B0BD-42FE01CBB147}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.MediaWorker", "Glint.MediaWorker\Glint.MediaWorker.csproj", "{2CB63E1D-0AF4-41F5-B11F-6ECDBEF12AEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.MediaWorker", "src\Glint.MediaWorker\Glint.MediaWorker.csproj", "{2CB63E1D-0AF4-41F5-B11F-6ECDBEF12AEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

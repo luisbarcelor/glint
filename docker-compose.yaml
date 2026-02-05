@@ -1,14 +1,14 @@
 services:
   glint-web: 
     build:
-      context: ./web-client/
+      context: ./apps/web-client/
       target: development
     image: glint-web:dev
     container_name: glint-web-dev
     ports:
       - "3000:3000"
     volumes:
-      - ./web-client:/glint/src
+      - ./apps/web-client:/glint/src
       - /glint/src/node_modules
     depends_on:
       glint-api:
@@ -18,7 +18,7 @@ services:
     
   glint-api:
     build:
-      context: ./backend/Glint.HttpApi/
+      context: ./apps/backend/src/Glint.HttpApi/
       target: development
     image: glint-api:dev
     container_name: glint-api-dev
@@ -27,7 +27,7 @@ services:
     environment:
       - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
     volumes:
-      - ./backend/Glint.HttpApi:/glint/src
+      - ./apps/backend/src/Glint.HttpApi:/glint/src
     depends_on:
       glint-media-worker:
         condition: service_started
@@ -38,14 +38,14 @@ services:
   
   glint-media-worker:
     build:
-      context: ./backend/Glint.MediaWorker/
+      context: ./apps/backend/src/Glint.MediaWorker/
       target: development
     image: glint-media-worker:dev
     container_name: glint-media-worker-dev
     environment:
       - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
     volumes:
-      - ./backend/Glint.MediaWorker:/glint/src
+      - ./apps/backend/src/Glint.MediaWorker:/glint/src
     depends_on:
       redis:
         condition: service_healthy
