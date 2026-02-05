@@ -4,7 +4,8 @@ RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
 FROM pnpm AS dependencies
 WORKDIR /glint/src
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm fetch
+RUN pnpm install --offline --frozen-lockfile
 
 FROM dependencies AS build
 COPY . .
