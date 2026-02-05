@@ -1,0 +1,77 @@
+services:
+  glint-web: 
+    build:
+      context: ./web-client/
+      target: development
+    image: glint-web:dev
+    container_name: glint-web-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web-client:/glint/src
+      - /glint/src/node_modules
+    depends_on:
+      glint-api:
+        condition: service_started
+    networks:
+      - glint-network
+    
+  glint-api:
+    build:
+      context: ./backend/Glint.HttpApi/
+      target: development
+    image: glint-api:dev
+    container_name: glint-api-dev
+    ports:
+      - "5000:5000"
+    environment:
+      - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
+    volumes:
+      - ./backend/Glint.HttpApi:/glint/src
+    depends_on:
+      glint-media-worker:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    networks:
+      - glint-network
+  
+  glint-media-worker:
+    build:
+      context: ./backend/Glint.MediaWorker/
+      target: development
+    image: glint-media-worker:dev
+    container_name: glint-media-worker-dev
+    environment:
+      - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
+    volumes:
+      - ./backend/Glint.MediaWorker:/glint/src
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - glint-network
+
+  redis:
+    image: redis:8.4.0-alpine
+    container_name: glint-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - glint_redis_data:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+    networks:
+      - glint-network
+
+networks:
+  glint-network:
+    driver: bridge
+
+volumes:
+  glint_redis_data:
