@@ -27,7 +27,7 @@ services:
     environment:
       - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
     volumes:
-      - ./apps/backend/src/Glint.HttpApi:/glint/src
+      - ./apps/backend/src:/glint/src
     depends_on:
       glint-media-worker:
         condition: service_started
@@ -45,7 +45,7 @@ services:
     environment:
       - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
     volumes:
-      - ./apps/backend/src/Glint.MediaWorker:/glint/src
+      - ./apps/backend/src:/glint/src
     depends_on:
       redis:
         condition: service_healthy
