@@ -1,4 +1,6 @@
-using Glint.HttpApi.Services;
+using Glint.Application.Services;
+using Glint.Core.Repositories;
+using Glint.Infrastructure.Repositories;
 using Scalar.AspNetCore;
 
 namespace Glint.HttpApi;
@@ -28,6 +30,7 @@ internal static class Program
     {
         services.AddOpenApi();
         services.AddControllers();
-        services.AddTransient<IVideoUploadService, VideoUploadService>();
+        services.AddTransient<IAssetService, AssetService>();
+        services.AddTransient<IAssetRepository, AssetRepository>();
     }
 }

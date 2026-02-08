@@ -15,4 +15,10 @@
         <Watch Remove="obj/**" />
         <Watch Remove="bin/**" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Glint.Application\Glint.Application.csproj" />
+      <ProjectReference Include="..\..\Glint.Domain\Glint.Domain.csproj" />
+      <ProjectReference Include="..\..\Glint.Infrastructure\Glint.Infrastructure.csproj" />
+    </ItemGroup>
 </Project>
