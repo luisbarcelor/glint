@@ -4,13 +4,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.HttpApi", "src\Glint.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.MediaWorker", "src\Glint.MediaWorker\Glint.MediaWorker.csproj", "{2CB63E1D-0AF4-41F5-B11F-6ECDBEF12AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.Domain", "Glint.Domain\Glint.Domain.csproj", "{39F4A1E8-D440-465D-9432-40EE79BD1D96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.Domain", "src\Glint.Domain\Glint.Domain.csproj", "{39F4A1E8-D440-465D-9432-40EE79BD1D96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.Application", "Glint.Application\Glint.Application.csproj", "{E2FC5767-78D9-491D-A372-8F96AE2459FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.Application", "src\Glint.Application\Glint.Application.csproj", "{E2FC5767-78D9-491D-A372-8F96AE2459FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.Infrastructure", "Glint.Infrastructure\Glint.Infrastructure.csproj", "{C229703D-4939-4574-A00B-EB82350CB09F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glint.Infrastructure", "src\Glint.Infrastructure\Glint.Infrastructure.csproj", "{C229703D-4939-4574-A00B-EB82350CB09F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{E393887E-1EDF-4B66-A173-94C864A58E9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0559C1D9-143F-4EE3-87D2-A0A72F5B818C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +44,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2CB63E1D-0AF4-41F5-B11F-6ECDBEF12AEC} = {E393887E-1EDF-4B66-A173-94C864A58E9E}
 		{E93B2B51-AA74-4D78-B0BD-42FE01CBB147} = {E393887E-1EDF-4B66-A173-94C864A58E9E}
+		{E2FC5767-78D9-491D-A372-8F96AE2459FE} = {0559C1D9-143F-4EE3-87D2-A0A72F5B818C}
+		{39F4A1E8-D440-465D-9432-40EE79BD1D96} = {0559C1D9-143F-4EE3-87D2-A0A72F5B818C}
+		{C229703D-4939-4574-A00B-EB82350CB09F} = {0559C1D9-143F-4EE3-87D2-A0A72F5B818C}
+		{E393887E-1EDF-4B66-A173-94C864A58E9E} = {0559C1D9-143F-4EE3-87D2-A0A72F5B818C}
 	EndGlobalSection
 EndGlobal
