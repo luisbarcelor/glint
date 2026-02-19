@@ -68,6 +68,20 @@ services:
       start_period: 5s
     networks:
       - glint-network
+    
+  postgres:
+    image: postgres:18.2-alpine
+    container_name: glint-postgres-dev
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - glint_postgres_data:/var/lib/postgresql
+    networks:
+      - glint-network
 
 networks:
   glint-network:
@@ -75,3 +89,4 @@ networks:
 
 volumes:
   glint_redis_data:
+  glint_postgres_data:
