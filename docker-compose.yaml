@@ -25,7 +25,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
+      - ConnectionStrings__Redis=redis:6379,password=${REDIS_PASSWORD}
     volumes:
       - ./apps/backend/src:/glint/src
     depends_on:
@@ -43,7 +43,7 @@ services:
     image: glint-media-worker:dev
     container_name: glint-media-worker-dev
     environment:
-      - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD}
+      - ConnectionStrings__Redis=redis:6379,password=${REDIS_PASSWORD}
     volumes:
       - ./apps/backend/src:/glint/src
     depends_on:
@@ -66,6 +66,17 @@ services:
       timeout: 3s
       retries: 10
       start_period: 5s
+    networks:
+      - glint-network
+    
+  redisinsight:
+    image: redis/redisinsight:3.0.3
+    container_name: glint-redisinsight-dev
+    ports:
+      - "5540:5540"
+    depends_on:
+      redis:
+        condition: service_healthy
     networks:
       - glint-network
     
