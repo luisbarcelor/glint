@@ -17,17 +17,17 @@ public class AssetsController : ControllerBase
     }
 
     [HttpPost("upload")]
-    public async Task<IActionResult> Upload([FromForm] UploadAssetRequest request)
+    public async Task<IActionResult> Upload([FromForm] UploadAssetRequest request, CancellationToken stoppingToken)
     {
         try
         {
-            var fileId = await _assetService.UploadAsync(new UploadAssetCommand
+            var fileId = await _assetService.UploadAsync(new UploadAssetInput
             {
                 FileName = request.File?.FileName ?? "",
                 ContentType = request.File?.ContentType ?? "",
                 Length = request.File?.Length ?? 0,
                 UploadStream = request.File?.OpenReadStream() ?? Stream.Null
-            });
+            }, stoppingToken);
 
             return Created(string.Empty, new { fileId });
         }

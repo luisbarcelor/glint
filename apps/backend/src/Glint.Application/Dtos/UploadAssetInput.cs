@@ -1,6 +1,6 @@
 namespace Glint.Application.Dtos;
 
-public class UploadAssetCommand
+public class UploadAssetInput
 {
     public required string FileName { get; init; }
     public required string ContentType { get; init; }

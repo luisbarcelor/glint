@@ -1,6 +1,6 @@
-using Glint.Core.Entities;
+using Glint.Domain.Entities;
 
-namespace Glint.Core.Repositories;
+namespace Glint.Domain.Repositories;
 
 public interface IAssetRepository
 {

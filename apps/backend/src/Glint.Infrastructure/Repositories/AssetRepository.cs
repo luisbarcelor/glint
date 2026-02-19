@@ -1,5 +1,5 @@
-﻿using Glint.Core.Entities;
-using Glint.Core.Repositories;
+﻿using Glint.Domain.Entities;
+using Glint.Domain.Repositories;
 
 namespace Glint.Infrastructure.Repositories;
 

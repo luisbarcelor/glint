@@ -1,4 +1,4 @@
-using Glint.Core.Entities;
+using Glint.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Glint.Infrastructure.Data;

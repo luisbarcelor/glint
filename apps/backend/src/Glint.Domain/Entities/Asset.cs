@@ -1,4 +1,4 @@
-﻿namespace Glint.Core.Entities;
+﻿namespace Glint.Domain.Entities;
 
 public class Asset
 {
