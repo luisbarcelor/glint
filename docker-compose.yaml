@@ -29,8 +29,6 @@ services:
     volumes:
       - ./apps/backend/src:/glint/src
     depends_on:
-      glint-media-worker:
-        condition: service_started
       redis:
         condition: service_healthy
     networks:
