@@ -17,9 +17,8 @@ WORKDIR /glint/src/Glint.HttpApi
 # No COPY needed — source files come from volume mount.
 ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://+:5000
-ENV DOTNET_USE_POLLING_FILE_WATCHER=1
 EXPOSE 5000
-ENTRYPOINT ["dotnet", "watch", "run", "--no-launch-profile"]
+ENTRYPOINT ["dotnet", "run", "--no-build", "--no-restore", "--no-launch-profile"]
 
 FROM base AS final
 COPY --from=build /glint/publish .

@@ -18,8 +18,7 @@ WORKDIR /glint/src/Glint.MediaWorker
 RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg=7:6.1.1* && rm -rf /var/lib/apt/lists/*
 # No COPY needed — source files come from volume mount.
 ENV DOTNET_ENVIRONMENT=Development
-ENV DOTNET_USE_POLLING_FILE_WATCHER=1
-ENTRYPOINT ["dotnet", "watch", "run", "--no-launch-profile"]
+ENTRYPOINT ["dotnet", "run", "--no-build", "--no-restore", "--no-launch-profile"]
 
 FROM base AS final
 COPY --from=build /glint/publish .
