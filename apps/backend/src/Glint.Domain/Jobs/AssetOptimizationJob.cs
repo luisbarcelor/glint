@@ -1,3 +1,3 @@
 ﻿namespace Glint.Domain.Jobs;
 
-public record AssetOptimizationJob(Guid id);
+public record AssetOptimizationJob(Guid Id);

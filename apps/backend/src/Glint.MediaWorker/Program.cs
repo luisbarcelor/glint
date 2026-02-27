@@ -28,6 +28,5 @@ internal static class Program
         services.AddHangfireServer();
         
         services.AddScoped<IAssetOptimizationProcessor, AssetOptimizationProcessor>();
-        services.AddHostedService<MediaWorker>();
     }
 }

@@ -4,7 +4,6 @@
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>dotnet-Glint.MediaProcessingWorker-e3398cb8-c77f-4600-96b9-d7482dbfc1db</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>

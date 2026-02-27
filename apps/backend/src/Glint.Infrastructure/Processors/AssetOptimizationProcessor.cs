@@ -15,7 +15,7 @@ public class AssetOptimizationProcessor : IAssetOptimizationProcessor
     
     public async Task ProcessAsync(AssetOptimizationJob job, CancellationToken stoppingToken)
     {
-        _logger.LogInformation("Processing asset {AssetId}", job.id);
+        _logger.LogInformation("Processing asset {AssetId}", job.Id);
         await Task.CompletedTask;
     }
 }
