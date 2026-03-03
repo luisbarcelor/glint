@@ -1,7 +1,6 @@
 ﻿using Glint.Application.Dtos;
-using Glint.Domain.Jobs;
-using Glint.Domain.Processors;
-using Hangfire;
+using Glint.Application.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Glint.Application.Services;
 
@@ -10,11 +9,18 @@ public class AssetService : IAssetService
     private static readonly string[] AllowedExtensions = [".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"];
     private const long MaxFileSize = 500 * 1024 * 1024;
     
-    private readonly IBackgroundJobClient _jobClient;
+    private readonly IJobDispatcher _jobDispatcher;
+    private readonly IMediaProcessor _mediaProcessor;
+    private readonly ILogger<AssetService> _logger;
 
-    public AssetService(IBackgroundJobClient jobClient)
+    public AssetService(
+        IJobDispatcher jobDispatcher,
+        IMediaProcessor mediaProcessor,
+        ILogger<AssetService> logger)
     {
-        _jobClient = jobClient;
+        _jobDispatcher = jobDispatcher;
+        _mediaProcessor = mediaProcessor;
+        _logger = logger;
     }
 
     public async Task<Guid> UploadAsync(UploadAssetInput input, CancellationToken stoppingToken)
@@ -55,9 +61,20 @@ public class AssetService : IAssetService
             throw new IOException("File could not be saved.", ex);
         }
         
-        _jobClient.Enqueue<IAssetOptimizationProcessor>(x => 
-            x.ProcessAsync(new AssetOptimizationJob(fileId), stoppingToken));
+        _jobDispatcher.EnqueueOptimization(fileId);
 
         return fileId;
+    }
+
+    public async Task OptimizeAssetAsync(Guid assetId, CancellationToken stoppingToken)
+    {
+        _logger.LogInformation("Processing asset {AssetId}", assetId);
+        
+        // 1. Fetch from DB
+        // 2. Update status to "Processing"
+        
+        await _mediaProcessor.ProcessMediaAsync(assetId, stoppingToken);
+        
+        // 3. Update status to "Completed" or "Failed"
     }
 }

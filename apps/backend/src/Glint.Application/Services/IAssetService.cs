@@ -5,4 +5,5 @@ namespace Glint.Application.Services;
 public interface IAssetService
 {
     Task<Guid> UploadAsync(UploadAssetInput input, CancellationToken stoppingToken);
+    Task OptimizeAssetAsync(Guid assetId, CancellationToken stoppingToken);
 }

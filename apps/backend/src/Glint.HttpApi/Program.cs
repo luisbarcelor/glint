@@ -1,7 +1,6 @@
-using Glint.Application.Services;
-using Glint.Domain.Repositories;
+using Glint.Application;
 using Glint.HttpApi.Hangfire;
-using Glint.Infrastructure.Repositories;
+using Glint.Infrastructure;
 using Hangfire;
 using Hangfire.Redis.StackExchange;
 using Scalar.AspNetCore;
@@ -42,8 +41,8 @@ internal static class Program
 
         services.AddOpenApi();
         services.AddControllers();
-
-        services.AddTransient<IAssetService, AssetService>();
-        services.AddTransient<IAssetRepository, AssetRepository>();
+        
+        services.AddApplication();
+        services.AddInfrastructure();
     }
 }

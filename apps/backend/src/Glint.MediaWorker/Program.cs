@@ -1,5 +1,5 @@
-using Glint.Domain.Processors;
-using Glint.Infrastructure.Processors;
+using Glint.Application;
+using Glint.Infrastructure;
 using Hangfire;
 using Hangfire.Redis.StackExchange;
 
@@ -27,6 +27,7 @@ internal static class Program
         );
         services.AddHangfireServer();
         
-        services.AddScoped<IAssetOptimizationProcessor, AssetOptimizationProcessor>();
+        services.AddApplication();
+        services.AddInfrastructure();
     }
 }
