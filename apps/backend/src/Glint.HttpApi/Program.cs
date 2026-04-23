@@ -26,6 +26,7 @@ internal static class Program
         await app.RunAsync();
     }
     
+    // This configures app services
     private static void ConfigureServices(IServiceCollection services)
     {
         services.AddOpenApi();
